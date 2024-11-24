@@ -18,6 +18,8 @@ WORKDIR /var/www
 RUN docker-php-ext-install pdo pdo_pgsql
 RUN docker-php-ext-install gd
 
+COPY --from=composer/composer:2.8.3-bin /composer /usr/bin/composer
+
 RUN addgroup --system --gid 1000 www
 RUN adduser --uid 1000 --home /bin/bash --ingroup www www --disabled-password --system
 
