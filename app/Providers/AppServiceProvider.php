@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
+use Carbon\Translator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Translator::get('pt_BR')->addDirectory(base_path('lang/Carbon'));
+        Carbon::setLocale('pt_BR.php');
     }
 }
