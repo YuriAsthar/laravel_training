@@ -123,4 +123,7 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'api' => [
+        'rate-limit-per-minute' => env('API_RATE_LIMIT_PER_MINUTE', 5),
+    ],
 ];
