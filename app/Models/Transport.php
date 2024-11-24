@@ -9,24 +9,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use LaravelTraining\Enums\Models\Transport\Type;
 
-class Hotel extends Model
+class Transport extends Model
 {
     use HasFactory,
         MassPrunable,
         SoftDeletes;
 
-    protected $table = 'hotels';
+    protected $table = 'transports';
 
     protected $fillable = [
         'id',
+        'type',
         'name',
-        'country',
-        'city',
-        'state',
-        'neighborhood',
-        'street',
-        'number',
         'created_at',
         'deleted_at',
     ];
@@ -35,12 +31,8 @@ class Hotel extends Model
     {
         return [
             'deleted_at' => 'datetime',
+            'type' => Type::class,
         ];
-    }
-
-    public function hotelRooms(): HasMany
-    {
-        return $this->hasMany(HotelRoom::class);
     }
 
     public function hotelTransport(): HasMany
@@ -48,10 +40,22 @@ class Hotel extends Model
         return $this->hasMany(HotelTransport::class);
     }
 
-    public function transports(): BelongsToMany
+    public function hotels(): BelongsToMany
     {
-        return $this->belongsToMany(Transport::class)
+        return $this->belongsToMany(Hotel::class)
             ->using(HotelTransport::class)
+            ->withTimestamps();
+    }
+
+    public function terminalTransport(): HasMany
+    {
+        return $this->hasMany(TerminalTransport::class);
+    }
+
+    public function terminals(): BelongsToMany
+    {
+        return $this->belongsToMany(Terminal::class)
+            ->using(TerminalTransport::class)
             ->withTimestamps();
     }
 
