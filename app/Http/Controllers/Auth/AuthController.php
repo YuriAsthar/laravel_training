@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\Auth\LoginRequest;
 use App\Resources\Jwt as JwtResource;
 use App\Resources\User as UserResource;
 use Illuminate\Http\JsonResponse;
@@ -13,15 +14,15 @@ class AuthController
     {
     }
 
-    public function login(): JwtResource|JsonResponse
+    public function login(LoginRequest $request): JwtResource|JsonResponse
     {
-        $credentials = request(['email', 'password']);
+        $credentials = $request->validated();
 
-        if (!$token = auth()->attempt($credentials)) {
+        if (! $token = auth()->attempt($credentials)) {
             return response()->json(status: Response::HTTP_UNAUTHORIZED);
         }
 
-        return JwtResource::make(['token' => $token]);
+        return JwtResource::make((object) ['token' => $token])->response()->setStatusCode(Response::HTTP_CREATED);
     }
 
     public function me(): UserResource
@@ -38,6 +39,6 @@ class AuthController
 
     public function refresh(): JwtResource
     {
-        return JwtResource::make(auth()->refresh());
+        return JwtResource::make((object) ['token' => auth()->refresh()]);
     }
 }
