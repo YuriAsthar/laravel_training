@@ -1,0 +1,55 @@
+services:
+  app:
+    container_name: laraveltraining-app
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    restart: always
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
+      - redis
+
+  nginx:
+    container_name: laraveltraining-nginx
+    image: nginx:1.25.1-alpine-slim
+    restart: always
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx:/etc/nginx/conf.d
+    ports:
+      - "8000:80"
+
+  redis:
+    container_name: laraveltraining-redis
+    build:
+      context: .
+      dockerfile: ./docker/redis/Dockerfile
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis:/data
+
+  postgres:
+    container_name: laraveltraining-postgres
+    build:
+      context: .
+      dockerfile: ./docker/postgres/Dockerfile
+    restart: always
+    environment:
+      - POSTGRES_DB=sandbox
+      - POSTGRES_USER=sandbox
+      - POSTGRES_PASSWORD=sandbox
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  redis:
+  postgres:
