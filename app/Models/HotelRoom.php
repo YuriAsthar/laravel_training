@@ -10,20 +10,24 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use LaravelTraining\Enums\Models\TravelRequest\Status;
+use LaravelTraining\Enums\Models\HotelRoom\Currency;
 
-class TravelRequest extends Model
+class HotelRoom extends Model
 {
-    use MassPrunable,
-        HasFactory,
+    use HasFactory,
+        MassPrunable,
         SoftDeletes;
 
-    protected $table = 'travel_requests';
+    protected $table = 'hotel_rooms';
 
     protected $fillable = [
-        'status',
-        'user_id',
-        'transport_terminal_id',
+        'id',
+        'room_number',
+        'floor_number',
+        'bed_quantity',
+        'amount',
+        'currency',
+        'hotel_id',
         'created_at',
         'deleted_at',
     ];
@@ -31,14 +35,15 @@ class TravelRequest extends Model
     protected function casts(): array
     {
         return [
-            'status' => Status::class,
             'deleted_at' => 'datetime',
+            'currency' => Currency::class,
+            'amount' => 'int',
         ];
     }
 
-    public function user(): BelongsTo
+    public function hotel(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Hotel::class);
     }
 
     public function hotelRoomTravelRequest(): HasMany
@@ -46,9 +51,9 @@ class TravelRequest extends Model
         return $this->hasMany(HotelRoomTravelRequest::class);
     }
 
-    public function hotelRooms(): BelongsToMany
+    public function travelRequests(): BelongsToMany
     {
-        return $this->belongsToMany(HotelRoom::class)
+        return $this->belongsToMany(TravelRequest::class)
             ->using(HotelRoomTravelRequest::class)
             ->withTimestamps();
     }

@@ -2,6 +2,8 @@
 
 namespace Tests\Unit\Models;
 
+use App\Models\Hotel;
+use App\Models\HotelRoom;
 use App\Models\TravelRequest;
 use App\Models\User;
 use Illuminate\Database\Console\PruneCommand;
@@ -45,6 +47,18 @@ class TravelRequestTest extends TestCase
 
         $this->assertEquals($this->user->fresh(), $travelRequest->user);
         $this->assertEquals($travelRequest->fresh(), $this->user->travelRequests()->first());
+
+        $hotel = Hotel::factory()->create();
+        $hotelRoom = HotelRoom::factory()->for($hotel)->create();
+
+        $travelRequest->hotelRooms()->attach($hotelRoom);
+
+        $this->assertEquals($hotelRoom->fresh(), $travelRequest->hotelRooms->first()->fresh());
+
+        $this->assertDatabaseHas('hotel_room_travel_request', [
+            'hotel_room_id' => $hotelRoom->id,
+            'travel_request_id' => $travelRequest->id,
+        ]);
     }
 
     public function test_if_it_will_prune_properly(): void
