@@ -53,6 +53,11 @@ class TravelRequest extends Model
             ->withTimestamps();
     }
 
+    public function terminalTransport(): BelongsTo
+    {
+        return $this->belongsTo(TerminalTransport::class);
+    }
+
     public function prunable(): Builder
     {
         return static::where('deleted_at', '<=', now()->subDays(30));
