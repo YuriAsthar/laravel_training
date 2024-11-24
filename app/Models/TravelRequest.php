@@ -23,7 +23,7 @@ class TravelRequest extends Model
     protected $fillable = [
         'status',
         'user_id',
-        'transport_terminal_id',
+        'terminal_transport_id',
         'created_at',
         'deleted_at',
     ];

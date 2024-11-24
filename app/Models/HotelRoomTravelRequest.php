@@ -2,18 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class HotelRoomTravelRequest extends Pivot
 {
-    use HasFactory,
-        MassPrunable,
-        SoftDeletes;
-
     protected $table = 'hotel_room_travel_request';
 
     protected $fillable = [

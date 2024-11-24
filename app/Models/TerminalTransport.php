@@ -2,14 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class TerminalTransport extends Pivot
 {
-    use HasFactory;
-
     protected $table = 'terminal_transport';
 
     protected $fillable = [
