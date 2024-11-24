@@ -15,7 +15,7 @@ Route::group([
     $router->group(['middleware' => 'auth:api'], function (Router $router) {
         $router->post('logout', [AuthController::class, 'logout'])->name('api.auth.logout');
         $router->post('refresh', [AuthController::class, 'refresh'])->name('api.auth.refresh');
-        $router->post('me', [AuthController::class, 'me'])->name('api.auth.me');
+        $router->get('me', [AuthController::class, 'me'])->name('api.auth.me');
     });
 });
 
