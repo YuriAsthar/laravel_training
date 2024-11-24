@@ -12,6 +12,6 @@ enum Type: string
         InvokableCases,
         From;
 
-    case AIRCRAFT = 'aircraft';
-    case BUS = 'bus';
+    case OUTWARD_TRIP = 'outward-trip';
+    case RETURN_TRIP = 'return-trip';
 }
