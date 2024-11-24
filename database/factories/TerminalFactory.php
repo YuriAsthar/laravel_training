@@ -11,7 +11,7 @@ class TerminalFactory extends Factory
     {
         return [
             'name' => 'Terminal '.$this->faker->name(),
-            'type' => Type::AIRCRAFT,
+            'type' => Type::OUTWARD_TRIP,
             'country' => 'BRA',
             'city' => 'Betim',
             'state' => 'MG',
