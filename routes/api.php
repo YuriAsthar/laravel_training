@@ -36,5 +36,3 @@ Route::group(['middleware' => 'auth:api'], function (Router $router) {
         });
     });
 });
-
-

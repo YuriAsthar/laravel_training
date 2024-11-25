@@ -48,6 +48,14 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
 
+  mailcatcher:
+    container_name: laraveltraining-mailcatcher
+    build:
+      context: .
+      dockerfile: ./docker/mail/Dockerfile
+    ports:
+      - 1025
+      - 1080:1080
 volumes:
   redis:
   postgres:
