@@ -181,7 +181,8 @@ return [
         'travel_request' => [
             'invalid_terminal_transport_id' => 'Não foi possível processar sua solicitação, pois você já tem uma solicitação de viagem pendente!',
             'not_exist_terminal_transport_id' => 'O terminal com este transporte não está mais disponível no momento!',
-            'cannot_cancel' => 'Não é possível cancelar uma solicitação de viagem com o status :status!',
+            'cannot_cancel' => 'Não é possível alterar o status de uma solicitação de viagem quando o status atual é :status!',
+            'start_date_cannot_be_greater_than_end_date' => 'A data de inicio da viagem não pode ser maior que a final!',
         ],
 
         'filter' => [
