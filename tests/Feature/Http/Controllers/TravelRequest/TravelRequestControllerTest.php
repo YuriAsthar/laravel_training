@@ -203,14 +203,13 @@ class TravelRequestControllerTest extends TestCase
     ): void {
         [
             'expected_travel_request' => $expectedTravelRequest,
-            'expected_json_count' => $expectedJsonCount,
         ] = $function($this);
 
         $this->getJson(
             route('api.travel-requests.index', $filter),
             $this->headers,
         )
-            ->assertJsonCount($expectedJsonCount, 'data')
+            ->assertJsonCount(1, 'data')
             ->assertJsonPath('data.0.id', $expectedTravelRequest->id)
             ->assertSuccessful();
     }
@@ -227,7 +226,6 @@ class TravelRequestControllerTest extends TestCase
                     TravelRequest::factory()->for($test->user)->create(['status' => Status::APPROVED]);
 
                     return [
-                        'expected_json_count' => 1,
                         'expected_travel_request' => TravelRequest::factory()->for($test->user)->create(['status' => Status::REQUESTED]),
                     ];
                 },
@@ -241,7 +239,6 @@ class TravelRequestControllerTest extends TestCase
                     $expectedTravelRequest = self::createHotel($test, $expectedHotelName);
 
                     return [
-                        'expected_json_count' => 1,
                         'expected_travel_request' => $expectedTravelRequest,
                     ];
                 },
@@ -253,7 +250,6 @@ class TravelRequestControllerTest extends TestCase
                     $expectedTravelRequest = self::createHotel($test, Str::uuid()->toString(), Type::RETURN_TRIP);
 
                     return [
-                        'expected_json_count' => 1,
                         'expected_travel_request' => $expectedTravelRequest,
                     ];
                 },
@@ -269,7 +265,6 @@ class TravelRequestControllerTest extends TestCase
                     );
 
                     return [
-                        'expected_json_count' => 1,
                         'expected_travel_request' => $expectedTravelRequest,
                     ];
                 },
@@ -285,7 +280,6 @@ class TravelRequestControllerTest extends TestCase
                     ]);
 
                     return [
-                        'expected_json_count' => 1,
                         'expected_travel_request' => $expectedTravelRequest,
                     ];
                 },
@@ -301,7 +295,6 @@ class TravelRequestControllerTest extends TestCase
                     ]);
 
                     return [
-                        'expected_json_count' => 1,
                         'expected_travel_request' => $expectedTravelRequest,
                     ];
                 },
@@ -317,7 +310,6 @@ class TravelRequestControllerTest extends TestCase
                     ]);
 
                     return [
-                        'expected_json_count' => 1,
                         'expected_travel_request' => $expectedTravelRequest,
                     ];
                 },
@@ -333,7 +325,6 @@ class TravelRequestControllerTest extends TestCase
                     ]);
 
                     return [
-                        'expected_json_count' => 1,
                         'expected_travel_request' => $expectedTravelRequest,
                     ];
                 },
@@ -349,7 +340,6 @@ class TravelRequestControllerTest extends TestCase
                     ]);
 
                     return [
-                        'expected_json_count' => 1,
                         'expected_travel_request' => $expectedTravelRequest,
                     ];
                 },
@@ -365,7 +355,6 @@ class TravelRequestControllerTest extends TestCase
                     ]);
 
                     return [
-                        'expected_json_count' => 1,
                         'expected_travel_request' => $expectedTravelRequest,
                     ];
                 },
