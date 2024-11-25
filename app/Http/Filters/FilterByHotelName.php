@@ -11,14 +11,12 @@ class FilterByHotelName implements Filter
     public function __invoke(Builder $query, $value, string $property): void
     {
         $query->whereHas(
-            'terminalTransport',
-            fn (Builder $query) => $query->whereHas(
-                'transport',
-                fn (Builder $query) => $query->whereHas(
-                    'hotels',
-                    fn (Builder $query) => $query->where('name', 'ILIKE', '%'.$value.'%'),
-                ),
-            ),
+            'hotelRooms.hotel',
+            fn ($query) => $query->where(function (Builder $query) use ($value) {
+                foreach (Arr::wrap($value) as $hotelName) {
+                    $query->orWhere('name', 'ILIKE', '%'.$hotelName.'%');
+                }
+            }),
         );
     }
 }
