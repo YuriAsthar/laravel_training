@@ -7,6 +7,7 @@ use App\Listeners\TravelRequest\Updated\SendStatusUpdatedNotification;
 use App\Models\TravelRequest;
 use App\Models\User;
 use App\Notifications\TravelRequest\TravelRequestStatusUpdatedNotification;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use LaravelTraining\Enums\Models\TravelRequest\Status;
@@ -15,6 +16,8 @@ use Tests\TestCase;
 
 class SendStatusUpdatedNotificationTest extends TestCase
 {
+    use LazilyRefreshDatabase;
+
     private User $user;
 
     private TravelRequest $travelRequest;
