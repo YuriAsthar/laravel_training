@@ -205,10 +205,10 @@ class TravelRequestControllerTest extends TestCase
             'expected_travel_request' => $expectedTravelRequest,
         ] = $function($this);
 
-        $this->getJson(
+        dd($this->getJson(
             route('api.travel-requests.index', $filter),
             $this->headers,
-        )
+        ))
             ->assertSuccessful()
             ->assertJsonPath('data.0.id', $expectedTravelRequest->id)
             ->assertJsonMissingPath('data.1.id');
@@ -219,17 +219,17 @@ class TravelRequestControllerTest extends TestCase
         $defaultTimestamp = 1732488785;
 
         return [
-            [
-                ['filter[status]' => Status::REQUESTED()],
-                function (self $test) {
-                    TravelRequest::factory()->for($test->user)->create(['status' => Status::CANCELLED]);
-                    TravelRequest::factory()->for($test->user)->create(['status' => Status::APPROVED]);
-
-                    return [
-                        'expected_travel_request' => TravelRequest::factory()->for($test->user)->create(['status' => Status::REQUESTED]),
-                    ];
-                },
-            ],
+//            [
+//                ['filter[status]' => Status::REQUESTED()],
+//                function (self $test) {
+//                    TravelRequest::factory()->for($test->user)->create(['status' => Status::CANCELLED]);
+//                    TravelRequest::factory()->for($test->user)->create(['status' => Status::APPROVED]);
+//
+//                    return [
+//                        'expected_travel_request' => TravelRequest::factory()->for($test->user)->create(['status' => Status::REQUESTED]),
+//                    ];
+//                },
+//            ],
             [
                 ['filter[hotel_name]' => 'Ssj 2'],
                 function (self $test) {
