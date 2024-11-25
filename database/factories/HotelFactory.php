@@ -9,13 +9,13 @@ class HotelFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'Hotel Corp. Capsule',
-            'country' => 'Brasil',
-            'city' => 'Betim',
-            'state' => 'MG',
-            'neighborhood' => 'Centro',
-            'street' => 'Av Amazonas',
-            'number' => '123',
+            'name' => $this->faker->name(),
+            'country' => $this->faker->country(),
+            'city' => $this->faker->city(),
+            'state' => $this->faker->streetSuffix(),
+            'neighborhood' => $this->faker->city(),
+            'street' => $this->faker->streetName(),
+            'number' => $this->faker->randomNumber(4),
         ];
     }
 }

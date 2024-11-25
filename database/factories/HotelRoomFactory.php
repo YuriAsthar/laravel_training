@@ -13,7 +13,7 @@ class HotelRoomFactory extends Factory
             'room_number' => $this->faker->randomDigit(),
             'floor_number' => $this->faker->randomDigit(),
             'bed_quantity' => $this->faker->randomDigit(),
-            'amount' => 10000,
+            'amount' => random_int(100, 10000),
             'currency' => Currency::BRL,
         ];
     }

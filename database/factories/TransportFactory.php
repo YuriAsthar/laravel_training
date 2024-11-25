@@ -10,7 +10,7 @@ class TransportFactory extends Factory
     public function definition(): array
     {
         return [
-            'type' => Type::OUTWARD_TRIP,
+            'type' => Type::AIRCRAFT,
             'name' => 'Hotel '.$this->faker->name(),
         ];
     }

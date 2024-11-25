@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
@@ -21,11 +22,14 @@ class TravelRequest extends Model
     protected $table = 'travel_requests';
 
     protected $fillable = [
+        'id',
         'status',
         'user_id',
         'terminal_transport_id',
         'created_at',
         'deleted_at',
+        'start_date',
+        'end_date',
     ];
 
     protected function casts(): array
@@ -33,6 +37,8 @@ class TravelRequest extends Model
         return [
             'status' => Status::class,
             'deleted_at' => 'datetime',
+            'start_date' => 'datetime',
+            'end_date' => 'datetime',
         ];
     }
 
@@ -56,6 +62,13 @@ class TravelRequest extends Model
     public function terminalTransport(): BelongsTo
     {
         return $this->belongsTo(TerminalTransport::class);
+    }
+
+    public function amount(): Attribute
+    {
+        return Attribute::get(
+            fn () => $this->hotelRooms->sum('amount'),
+        );
     }
 
     public function prunable(): Builder
