@@ -205,10 +205,10 @@ class TravelRequestControllerTest extends TestCase
             'expected_travel_request' => $expectedTravelRequest,
         ] = $function($this);
 
-        dd($this->getJson(
+        $this->getJson(
             route('api.travel-requests.index', $filter),
             $this->headers,
-        ))
+        )
             ->assertSuccessful()
             ->assertJsonPath('data.0.id', $expectedTravelRequest->id)
             ->assertJsonMissingPath('data.1.id');
@@ -219,27 +219,14 @@ class TravelRequestControllerTest extends TestCase
         $defaultTimestamp = 1732488785;
 
         return [
-//            [
-//                ['filter[status]' => Status::REQUESTED()],
-//                function (self $test) {
-//                    TravelRequest::factory()->for($test->user)->create(['status' => Status::CANCELLED]);
-//                    TravelRequest::factory()->for($test->user)->create(['status' => Status::APPROVED]);
-//
-//                    return [
-//                        'expected_travel_request' => TravelRequest::factory()->for($test->user)->create(['status' => Status::REQUESTED]),
-//                    ];
-//                },
-//            ],
             [
-                ['filter[hotel_name]' => 'Ssj 2'],
+                ['filter[status]' => Status::REQUESTED()],
                 function (self $test) {
-                    self::createHotel($test, Str::uuid()->toString());
-
-                    $expectedHotelName = 'Ssj 2';
-                    $expectedTravelRequest = self::createHotel($test, $expectedHotelName);
+                    TravelRequest::factory()->for($test->user)->create(['status' => Status::CANCELLED]);
+                    TravelRequest::factory()->for($test->user)->create(['status' => Status::APPROVED]);
 
                     return [
-                        'expected_travel_request' => $expectedTravelRequest,
+                        'expected_travel_request' => TravelRequest::factory()->for($test->user)->create(['status' => Status::REQUESTED]),
                     ];
                 },
             ],
