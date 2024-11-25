@@ -34,11 +34,11 @@ class TravelRequestController
         );
     }
 
-    public function show(IndexRequest $travelRequest, IndexQuery $query): TravelRequestResource
+    public function show(TravelRequest $travelRequest, IndexRequest $indexRequest, IndexQuery $query): TravelRequestResource
     {
         $user = $this->auth->user();
 
-        $this->authorize('view', [TravelRequest::class, $travelRequest]);
+        $this->authorize('view', [$travelRequest]);
 
         return TravelRequestResource::make(
             $query->whereBelongsTo($user)->where('id', $travelRequest->id)->first(),
