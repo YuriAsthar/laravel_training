@@ -205,13 +205,13 @@ class TravelRequestControllerTest extends TestCase
             'expected_travel_request' => $expectedTravelRequest,
         ] = $function($this);
 
-        dump($this->getJson(
+        $this->getJson(
             route('api.travel-requests.index', $filter),
             $this->headers,
-        ))
+        )
             ->assertSuccessful()
-            ->assertJsonCount(1, 'data')
-            ->assertJsonPath('data.0.id', $expectedTravelRequest->id);
+            ->assertJsonPath('data.0.id', $expectedTravelRequest->id)
+            ->assertJsonMissingPath('data.1.id');
     }
 
     public static function filterProvider(): array
