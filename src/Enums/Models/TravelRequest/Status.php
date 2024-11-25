@@ -23,4 +23,12 @@ enum Status: string
     case APPROVED = 'approved';
     #[CanCancel(false)]
     case CANCELLED = 'cancelled';
+
+    public static function canSendNotification(string $status): bool
+    {
+        return match ($status) {
+            self::APPROVED(), self::CANCELLED() => true,
+            default => false,
+        };
+    }
 }

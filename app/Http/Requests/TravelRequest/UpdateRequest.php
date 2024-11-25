@@ -14,7 +14,7 @@ class UpdateRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return $this->user()->can('create', [TravelRequest::class, $this->route('travelRequest')]);
+        return $this->user()->can('update', [TravelRequest::class, $this->route('travelRequest')]);
     }
 
     public function rules(): array
