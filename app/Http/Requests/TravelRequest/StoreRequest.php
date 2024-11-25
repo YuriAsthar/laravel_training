@@ -5,10 +5,13 @@ namespace App\Http\Requests\TravelRequest;
 use App\Models\HotelRoom;
 use App\Models\TerminalTransport;
 use App\Models\TravelRequest;
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
 use LaravelTraining\Enums\Models\TravelRequest\Status;
+use Throwable;
 
 class StoreRequest extends FormRequest
 {
@@ -20,6 +23,8 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'start_date' => ['required', 'integer'],
+            'end_date' => ['required', 'integer'],
             'terminal_transport_id' => [
                 'required',
                 'integer',
@@ -68,6 +73,16 @@ class StoreRequest extends FormRequest
                     __('validation.custom.travel_request.not_exist_terminal_transport_id'),
                 );
             }
+
+           $this->checkIfDateIfTimestamp($validator, 'start_date');
+           $this->checkIfDateIfTimestamp($validator, 'end_date');
+
+           if ($this->input('start_date', ) > $this->input('end_date')) {
+               $validator->errors()->add(
+                   'terminal_transport_id',
+                   __('validation.custom.travel_request.start_date_cannot_be_greater_than_end_date'),
+               );
+           }
         });
     }
 
@@ -83,5 +98,19 @@ class StoreRequest extends FormRequest
     {
         return TerminalTransport::where('id', $this->input('terminal_transport_id'))
             ->exists();
+    }
+
+    private function checkIfDateIfTimestamp(Validator $validator, string $inputName): void
+    {
+        try {
+            Carbon::createFromTimestamp($this->input($inputName));
+        } catch (Throwable) {
+            $validator->errors()->add(
+                'filter.'.$inputName,
+                __('validation.custom.filter.need_timestamp_format', [
+                    'filter' => $inputName,
+                ]),
+            );
+        }
     }
 }
