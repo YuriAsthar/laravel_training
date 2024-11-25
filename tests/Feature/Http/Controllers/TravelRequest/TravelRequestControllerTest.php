@@ -209,9 +209,9 @@ class TravelRequestControllerTest extends TestCase
             route('api.travel-requests.index', $filter),
             $this->headers,
         )
+            ->assertSuccessful()
             ->assertJsonCount(1, 'data')
-            ->assertJsonPath('data.0.id', $expectedTravelRequest->id)
-            ->assertSuccessful();
+            ->assertJsonPath('data.0.id', $expectedTravelRequest->id);
     }
 
     public static function filterProvider(): array
