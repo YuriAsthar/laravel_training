@@ -8,6 +8,7 @@ use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class AuthControllerTest extends TestCase
@@ -24,9 +25,7 @@ class AuthControllerTest extends TestCase
         $this->withoutMiddleware(ThrottleRequests::class);
     }
 
-    /**
-     * @dataProvider invalidLoginDataProvider
-     */
+    #[DataProvider('invalidLoginDataProvider')]
     public function test_login_endpoint_properly_with_invalid_data(array $errorMessage, array $data): void
     {
         $this->postJson(route('api.auth.login'), $data)
@@ -126,10 +125,5 @@ class AuthControllerTest extends TestCase
                 ['email' => 'a@yuriasthar.com', 'password' => null],
             ],
         ];
-    }
-
-    private function generateJwtToken(User $user, string $password = 'password'): string
-    {
-        return auth()->attempt(['email' => $user->email, 'password' => $password]);
     }
 }
