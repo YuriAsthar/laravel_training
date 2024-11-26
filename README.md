@@ -7,6 +7,12 @@
 > Resolvi não utilizar para demonstrar como meu código é feito sem nenhuma das bibliotecas citadas.
 > Ou seja, é apenas como escrevo meu código naturalmente.
 
+> [!IMPORTANT]
+>
+> Por que não removi os commits ao clonar o Laravel 11?
+>
+> Quando percebi era tarde de mais, então resolvi deixar. Este é um erro que não pretendo cometer mais.
+
 Rode os seguintes comandos em sequência:
 
 1. `cp .env.example .env`
