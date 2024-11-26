@@ -218,3 +218,7 @@ Exemplo:
 > [!WARNING]
 > 
 > Siga as regras da API de Atualizar um pedido de viagem, caso o seu pedido já esteja `approved` ou `cancelled` um erro 422 será retornado
+
+# Imagem do Diagrama Entidade Relacionamento do Banco de Dados
+
+<img src="./public/img/diagrama-entidade-relacionamento.png">
