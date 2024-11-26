@@ -5,11 +5,14 @@ namespace Feature\Http\Controllers\Hotel;
 use App\Models\Hotel;
 use App\Models\HotelRoom;
 use App\Models\User;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 class HotelControllerTest extends TestCase
 {
+    use LazilyRefreshDatabase;
+
     private User $user;
 
     private array $headers;

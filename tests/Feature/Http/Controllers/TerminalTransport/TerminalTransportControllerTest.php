@@ -5,11 +5,14 @@ namespace Feature\Http\Controllers\TerminalTransport;
 use App\Models\Terminal;
 use App\Models\Transport;
 use App\Models\User;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 class TerminalTransportControllerTest extends TestCase
 {
+    use LazilyRefreshDatabase;
+
     private User $user;
 
     private array $headers;
