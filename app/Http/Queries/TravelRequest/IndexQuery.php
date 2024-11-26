@@ -34,6 +34,6 @@ class IndexQuery extends QueryBuilder
 
         $this->defaultSort('-id');
 
-        $this->allowedSorts(['id', 'sort']);
+        $this->allowedSorts(['id']);
     }
 }

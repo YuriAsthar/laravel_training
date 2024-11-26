@@ -19,6 +19,7 @@ class Hotel extends JsonResource
             'number' => $this->number,
             'created_at' => $this->created_at->toIso8601String(),
             'deleted_at' => $this->deleted_at?->toIso8601String(),
+            'hotel_rooms' => HotelRoom::collection($this->whenLoaded('hotelRooms')),
         ];
     }
 }

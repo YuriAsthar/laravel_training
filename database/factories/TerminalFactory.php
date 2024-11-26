@@ -12,12 +12,12 @@ class TerminalFactory extends Factory
         return [
             'name' => 'Terminal '.$this->faker->name(),
             'type' => Type::OUTWARD_TRIP,
-            'country' => 'BRA',
-            'city' => 'Betim',
-            'state' => 'MG',
-            'neighborhood' => 'Central',
-            'street' => 'Rua principal ssj',
-            'street_number' => '2134',
+            'country' => $this->faker->country(),
+            'city' => $this->faker->city(),
+            'state' => $this->faker->streetSuffix(),
+            'neighborhood' => $this->faker->firstName(),
+            'street' => $this->faker->streetName(),
+            'street_number' => $this->faker->randomNumber(5),
         ];
     }
 }
