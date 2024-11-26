@@ -26,9 +26,4 @@ class TravelRequestPolicy
     {
         return $travelRequest->user()->is($user);
     }
-
-    public function delete(User $user, TravelRequest $travelRequest): bool
-    {
-        return $travelRequest->user()->is($user);
-    }
 }
