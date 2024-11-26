@@ -1,5 +1,12 @@
 # Iniciando o projeto
 
+> [!IMPORTANT]
+> 
+> Por que não foi usado Rector ou ECS nesse projeto?
+> 
+> Resolvi não utilizar para demonstrar como meu código é feito sem nenhuma das bibliotecas citadas.
+> Ou seja, é apenas como escrevo meu código naturalmente.
+
 Rode os seguintes comandos em sequência:
 
 1. `cp .env.example .env`
