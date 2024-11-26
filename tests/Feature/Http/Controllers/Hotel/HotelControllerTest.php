@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature\Http\Controllers\Hotel;
+namespace Tests\Feature\Http\Controllers\Hotel;
 
 use App\Models\Hotel;
 use App\Models\HotelRoom;

@@ -38,6 +38,9 @@ class HotelRoom extends Model
             'deleted_at' => 'datetime',
             'currency' => Currency::class,
             'amount' => 'int',
+            'floor_number' => 'string',
+            'room_number' => 'string',
+            'bed_quantity' => 'string',
         ];
     }
 

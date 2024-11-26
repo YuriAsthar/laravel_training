@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature\Http\Controllers\TerminalTransport;
+namespace Tests\Feature\Http\Controllers\TerminalTransport;
 
 use App\Models\Terminal;
 use App\Models\Transport;
