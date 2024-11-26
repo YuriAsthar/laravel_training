@@ -35,10 +35,10 @@ Route::group(['middleware' => 'auth:api'], function (Router $router) {
 });
 Route::group(['prefix' => 'internal'], function (Router $router) {
     $router->group(['prefix' => 'terminal-transport'], function (Router $router) {
-        $router->get('/', [TerminalTransportController::class, 'index'])->name('api.terminal-transport.index');
+        $router->get('/', [TerminalTransportController::class, 'index'])->name('api.internal.terminal-transport.index');
     });
 
     $router->group(['prefix' => 'hotels'], function (Router $router) {
-        $router->get('/', [HotelController::class, 'index'])->name('api.hotels.index');
+        $router->get('/', [HotelController::class, 'index'])->name('api.internal.hotels.index');
     });
 });

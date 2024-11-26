@@ -15,7 +15,7 @@ class HotelController
 
     public function index(Request $request): JsonResource
     {
-        return HotelResource::collection($this->hotel->with('hotelRooms')->simplePaginate(
+        return HotelResource::collection($this->hotel->latest()->with('hotelRooms')->simplePaginate(
             $request->input('per_page', 10),
         ));
     }

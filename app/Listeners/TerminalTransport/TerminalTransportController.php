@@ -16,7 +16,7 @@ class TerminalTransportController
 
     public function index(Request $request): JsonResource
     {
-        return TerminalTransportResource::collection($this->terminalTransport->with(['transport', 'terminal'])->simplePaginate(
+        return TerminalTransportResource::collection($this->terminalTransport->latest()->with(['transport', 'terminal'])->simplePaginate(
             $request->input('per_page', 10),
         ));
     }
