@@ -5,12 +5,15 @@ namespace Tests\Unit\Policy;
 use App\Models\TravelRequest;
 use App\Models\User;
 use App\Policies\TravelRequestPolicy;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class TravelRequestPolicyTest extends TestCase
 {
+    use LazilyRefreshDatabase;
+
     private User $user;
 
     private TravelRequest $travelRequest;
