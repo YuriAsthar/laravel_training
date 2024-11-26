@@ -189,3 +189,25 @@ Abra o seguinte link no seu navegador de preferências:
 Segue o link bruto caso não abra acima:
 
 - http://localhost:1080/
+
+## Quando a notificação de solicitação enviada foi aprovada ou cancelada acontece?
+
+Resolvi fazer um `listener` que escuta o evento de `updated` do model `TravelRequest`, então o toda vez
+que o status muda para `approved` ou `cancelled`, a notificação é enviada.
+
+Segue os passos abaixo para enviar a notificação:
+
+- Faça uma request na [(API) Atualizar um pedido de viagem](#api-atualizar-um-pedido-de-viagem);
+- No corpo dessa request muda o campo `status` para `approved`
+
+Exemplo:
+
+```
+{
+  "status": "approved"
+}
+```
+
+> [!WARNING]
+> 
+> Siga as regras da API de Atualizar um pedido de viagem, caso o seu pedido já esteja `approved` ou `cancelled` um erro 422 será retornado
