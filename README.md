@@ -77,12 +77,16 @@ O que significa cada campo?
 - `terminal_transport_id`: é o `ID` da tabela pivot entre um `transport` e um `terminal`;
 - `hotel_room_ids`: é o `ID` da tabela `hotel_rooms`, como o nome sugere, é os `quartos que você escolheu para sua viagem`.
 
-> [!NOTE] O que é `transport`?
+> [!NOTE] 
+> 
+> O que é `transport`?
 >
 > `Transport` é o veículo da viagem que pode ser `aircraft`(avião) ou `bus`(onibus).
 
 
-> [!NOTE] O que é `terminal`?
+> [!NOTE] 
+> 
+> O que é `terminal`?
 >
 > `Terminal` é o lugar que você terá que ir para pegar seu `transport`, existem dois tipos de `terminal`:
 > 
