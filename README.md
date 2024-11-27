@@ -23,6 +23,10 @@ Rode os seguintes comandos em sequência:
 6. `docker compose run app php artisan jwt:secret`
 7. `docker compose run app php artisan db:seed`
 
+Para abrir o banco de dados, rode o seguinte comando:
+
+1. `docker compose exec postgres psql -U sandbox`
+
 ## Como fazer login?
 
 Segue os dois usuários criados no sistema:
